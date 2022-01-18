@@ -1,4 +1,5 @@
 require 'net/http'
+require 'active_support/all'
 require 'dotenv'
 Dotenv.load
 
@@ -31,10 +32,12 @@ class DustNotify
   end
 end
 
-if Time.now.wednesday? || Time.now.saturday?
+today = Time.now.in_time_zone('Asia/Tokyo')
+
+if today.wednesday? || today.saturday?
   dust_notifiy = DustNotify.new('今日は燃えるゴミの日です')
   dust_notifiy.send
-elsif Time.now.monday?
+elsif today.monday?
   dust_notifiy = DustNotify.new('今日はプラスチックのゴミの日です')
   dust_notifiy.send
 else; end
