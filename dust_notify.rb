@@ -31,5 +31,10 @@ class DustNotify
   end
 end
 
-dust_notifiy = DustNotify.new('ゴミの日です')
-dust_notifiy.send
+if Time.now.wednesday? || Time.now.saturday?
+  dust_notifiy = DustNotify.new('今日は燃えるゴミの日です')
+  dust_notifiy.send
+elsif Time.now.monday?
+  dust_notifiy = DustNotify.new('今日はプラスチックのゴミの日です')
+  dust_notifiy.send
+else; end
